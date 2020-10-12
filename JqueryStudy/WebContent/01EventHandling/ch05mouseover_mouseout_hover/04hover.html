@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+   div#container {
+      /* border: solid 1px gray; */
+      width: 80%;
+      margin: 0 auto;
+   }
+   
+   span.buttons {
+      display: inline-block;
+      width: 100px;
+      border: solid 2px orange;
+      margin: 20px;
+      padding: 5px;
+      background-color: yellow;
+      color: #ff0000;
+      font-size: 15pt;
+      cursor: pointer;
+   }
+
+   div#comment {
+      /* border: solid 1px gray; */
+      width: 250px;
+      margin-top: 10px;
+   }
+
+   div#face > img {
+      border-radius: 50%;
+   }
+   
+</style>
+
+
+<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		
+		var arrPerson = [{name:"김태희", filename:"kimth.jpg", address:"서울 강동구", email:"kimth@gmail.com"}  
+				        ,{name:"아이유", filename:"iyou.jpg", address:"서울 강서구", email:"iyou@gmail.com"}
+				        ,{name:"박보영", filename:"parkby.jpg", address:"서울 강남구", email:"parkby@gmail.com"}];
+		var nameHtml = "";
+		for (var i=0; i<arrPerson.length; i++){
+			nameHtml += "<span class='buttons' id='"+ i +"'>" + arrPerson[i].name + "</span>";
+			
+		}
+		$("#firstdiv").html(nameHtml);
+		// $(".buttons").hover(function(event){}, function(event){});
+		$(".buttons").hover(function (event) {	// mouseover
+			
+			var $target = $(event.target);
+			$("#face").html("<img src='images/"+ arrPerson[$target.index()].filename +"'>");
+			var htmlComment = "<ol>";
+				
+			htmlComment += "<li>"+arrPerson[$target.index()].name+"</li>"
+			htmlComment += "<li>"+arrPerson[$target.index()].address+"</li>"
+			htmlComment += "<li>"+arrPerson[$target.index()].email+"</li>"
+			htmlComment += "</ol>";
+			$("#comment").html(htmlComment);
+			
+			$target.css({'background-color':'navy', 'color':'white' })
+			
+		}, 
+		function(event) {			// mouseout
+			$("#face").html("");
+			$("#comment").html("");
+			$(event.target).css({'background-color':'yellow', 'color':'#ff0000' })
+		}
+		);
+	});
+	
+	/*
+    ===== 선택자의 class 명 알아오기 =====
+             선택자.attr('class') 또는   선택자.prop('class')  
+ 
+    ===== 선택자의 id 명 알아오기 =====
+             선택자.attr('id') 또는   선택자.prop('id')
+          
+    ===== 선택자의 name 명 알아오기 =====   
+             선택자.attr('name') 또는   선택자.prop('name')
+ */
+	
+</script>
+
+</head>
+<body>
+	<div id="container" align="center">
+      <div id="firstdiv"></div>
+      
+      <div id="seconddiv">
+         <div id="face"></div>
+         <div id="comment" align="left"></div>
+      </div>
+   </div>
+</body>
+</html>

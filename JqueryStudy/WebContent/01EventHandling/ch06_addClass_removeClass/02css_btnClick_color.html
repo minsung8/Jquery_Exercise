@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	
+	#span {
+		background-color : navy;
+		color : white;
+		margin-right : 20px;
+	}
+	
+	.buttons {
+      display: inline-block;
+      width: 50px;
+      margin: 5px;
+      font-size: 10pt;
+   }   
+	
+	#box {
+		width : 100px;
+		height : 100px;
+	}
+	
+	#name {
+		font-size : 20px;
+		font-weight: bold;
+	}
+	
+</style>
+
+<script type="text/javascript" src="../../js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		
+		$(".buttons").bind("click", function(event) {
+			var $color = $(event.target).text();
+			
+			$("#box").css({'background-color' : $color});
+			$("#name").css({'color' : $color});
+			$("#name").html($color);
+			
+		});
+		
+		$(".buttons").eq(0).trigger("click");
+		
+		
+	});
+
+</script>
+
+</head>
+<body>
+	<div id="container">
+		<span id="span">버튼을 눌러보세요</span>
+		<button class="buttons">red</button>
+		<button class="buttons">orange</button>
+		<button class="buttons">yellow</button>
+		<button class="buttons">green</button>
+		<button class="buttons">blue</button>
+		<button class="buttons">navy</button>
+		<button class="buttons">purple</button>
+	</div>
+	
+	<div class="result">
+		<div id="box"></div>
+		<div id="name"></div>
+	</div>
+</body>
+</html>
